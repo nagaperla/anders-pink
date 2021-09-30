@@ -5,7 +5,7 @@ import { CardComponent } from 'components';
 import get from 'services/get';
 
 const HomeComponent = (props) => {
-  const [lists, setLists] = useState('');
+  const [lists, setLists] = useState(JSON.parse(localStorage.getItem('lists')) || '');
 
   useEffect(async () => {
     async function getLists() {
@@ -14,6 +14,7 @@ const HomeComponent = (props) => {
       const environment = await get('environment.json?errors=0');
       setLists([...sports.data, ...marketing.data, ...environment.data]);
       localStorage.removeItem('lists');
+      localStorage.setItem('lists', JSON.stringify([...sports.data, ...marketing.data, ...environment.data]));
     }
 
     if (!lists) {

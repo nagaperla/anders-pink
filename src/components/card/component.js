@@ -2,12 +2,12 @@ import React from "react";
 import moment from 'moment';
 import { truncateText } from 'helpers';
 
-const CardComponent = (article) => {
+const CardComponent = ({article}) => {
   const bookmarkArticle = () => {
     console.log(article);
   }
 
-  return (
+  return article && (
     <div className="col-4">
       <div className="card">
         <img className="card-img-top" src={article.image} alt={article.title} />
