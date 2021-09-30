@@ -1,13 +1,12 @@
 import React from "react";
 import HeaderComponent  from "../header/component";
+import BodyComponent  from "../body/component";
 
 const DefaultLayoutComponent = (props) => {
   return (
     <div>
       <HeaderComponent/>
-      <div className="my-5 pt-3">
-        {props.children}
-      </div>
+      <BodyComponent/>
     </div>
   )
 };

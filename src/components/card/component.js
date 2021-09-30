@@ -2,9 +2,16 @@ import React from "react";
 import moment from 'moment';
 import { truncateText } from 'helpers';
 
-const CardComponent = ({article}) => {
+const CardComponent = ({article, lists}) => {
   const bookmarkArticle = () => {
-    console.log(article);
+    const updateLists = lists.map(list => {
+      if (list.id === article.id) {
+        list['bookmark'] = !list.bookmark;
+      }
+      return list;
+    });
+    localStorage.setItem('lists', JSON.stringify(lists));
+    window.location.reload();
   }
 
   return article && (
@@ -17,7 +24,7 @@ const CardComponent = ({article}) => {
           </h5>
           <div className="d-flex flex-row justify-content-between">
             <em className="text-grey">{moment().diff(article.date, "days")} days ago</em>
-            <img src={require('assets/svgs/bookmark.svg').default} className='bookmark-icon' alt='Bookmark' onClick={bookmarkArticle} />
+            <img src={require(`assets/svgs/${article.bookmark ? 'bookmark_active' : 'bookmark'}.svg`).default} className='bookmark-icon' alt='Bookmark' onClick={bookmarkArticle} />
           </div>
           <p className="card-text">{truncateText(article.content, 50)}</p>
         </div>

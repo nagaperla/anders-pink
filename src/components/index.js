@@ -1,13 +1,11 @@
-import HomeComponent from './home/component';
-import BookmarksComponent from './bookmarks/component';
-import HeaderComponent from './common/header/component';
-import DefaultLayoutComponent from './common/default_layout/component';
+import HeaderComponent from './header/component';
+import BodyComponent from './body/component';
+import DefaultLayoutComponent from './default_layout/component';
 import CardComponent from './card/component';
 
 export {
-  HomeComponent,
-  BookmarksComponent,
   HeaderComponent,
+  BodyComponent,
   DefaultLayoutComponent,
   CardComponent
 }

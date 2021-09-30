@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { CardComponent } from 'components';
@@ -6,6 +7,7 @@ import get from 'services/get';
 
 const HomeComponent = (props) => {
   const [lists, setLists] = useState(JSON.parse(localStorage.getItem('lists')) || '');
+  const location = useLocation();
 
   useEffect(async () => {
     async function getLists() {
@@ -26,8 +28,13 @@ const HomeComponent = (props) => {
     <div className="container">
       <div className="row">
         {
-          lists && lists.map((article, idx) => (
-            <CardComponent article={article} key={idx} />
+          location.pathname === "/" && lists && lists.map((article, idx) => (
+            <CardComponent article={article} key={idx} lists={lists} />
+          ))
+        }
+        {
+          location.pathname === "/bookmarks" && lists && lists.map((article, idx) => article.bookmark && (
+            <CardComponent article={article} key={idx} lists={lists} />
           ))
         }
       </div>

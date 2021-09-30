@@ -1,11 +1,7 @@
 import React from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
-import {
-  HomeComponent,
-  BookmarksComponent,
-  DefaultLayoutComponent
-} from 'components'
+import { DefaultLayoutComponent } from 'components'
 
 const DefaultRoute = ({path, exact, component}) => (
   <DefaultLayoutComponent>
@@ -14,11 +10,10 @@ const DefaultRoute = ({path, exact, component}) => (
 )
 
 export const Routes = () => {
-  const location = useLocation()
   return (
-    <Switch location={location} key={location.pathname}>
-      <DefaultRoute exact path="/" component={HomeComponent} />
-      <DefaultRoute exact path="/bookmarks" component={BookmarksComponent} />
+    <Switch>
+      <DefaultRoute exact path="/" component={DefaultLayoutComponent} />
+      <DefaultRoute exact path="/bookmarks" component={DefaultLayoutComponent} />
     </Switch>
   )
 }
