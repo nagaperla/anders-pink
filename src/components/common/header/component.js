@@ -7,7 +7,7 @@ const HeaderComponent = (props) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="container navbar navbar-expand-lg navbar-light bg-light">
       <span className="navbar-brand">Anders Pink</span>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
