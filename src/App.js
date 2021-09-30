@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Routes from 'routes'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Importing toastify
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { GetDisplaySports, GetDisplayMarketing, GetDisplayEnvironment } from 'store/actions'
+
+class AppComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
+  async componentDidMount() {
+    // await this.props.bindDisplaySports({ url: 'sports.json?errors=0' });
+    // await this.props.bindDisplayMarketing({ url: 'marketing.json?errors=0' });
+    // await this.props.bindDisplayEnvironment({ url: 'environment.json?errors=0' });
+  }
+
+  render () {
+    return (
+      <div>
+        <ToastContainer />
+        <Router>
+          <Routes />
+        </Router>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    bindDisplaySports: (content) => dispatch(GetDisplaySports(content)),
+    bindDisplayMarketing: (content) => dispatch(GetDisplayMarketing(content)),
+    bindDisplayEnvironment: (content) => dispatch(GetDisplayEnvironment(content))
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AppComponent)
