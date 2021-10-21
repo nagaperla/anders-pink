@@ -1,0 +1,13 @@
+# How to commit training model to remote storage
+# https://spacy.io/usage/projects#remote
+
+- name: train
+  help: 'Training a spaCy pipeline using the specified corpus and config'
+  script:
+    - 'spacy train ./config/config.cfg --output ./config/training'
+  deps:
+    - 'corpus/train'
+    - 'corpus/dev'
+    - 'config/config.cfg'
+  outputs:
+    - 'config/training/model-best'
