@@ -13,12 +13,16 @@ spacy.prefer_gpu()
 # nlp = spacy.load("en_core_web_trf")
 
 nlp = English()
-nlp.add_pipe("snek")
+textcat_multilabel = nlp.add_pipe("textcat_multilabel")
+
 
 doc = nlp("What Cosby’s Release Means For Victims Of Workplace Sexual Harassment The technicalities behind Cosby's release are hardly any consolation to anyone who’s been a victim of sexual misconduct and is thinking about taking legal action in response..")
 print(doc)
 print([ (w, w.text, w.pos_) for w in doc])
 print([ (w.text, w.pos_) for w in doc])
+
+
+textcat_multilabel.from_bytes()
 
 # cls = spacy.util.get_lang_class(lang)
 # nlp2 = cls()
