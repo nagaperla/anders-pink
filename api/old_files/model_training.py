@@ -104,7 +104,7 @@ def __train_and_save(nlp, output_name, path, training_data, n_iter=5, split_rati
             for batch in batches:
                 texts = list([item["text"] for item in batch])
                 annotations = list([item["annotations"] for item in batch])
-
+                # training
                 try:
                     nlp.update(texts, annotations, sgd=optimizer,
                                drop=0.2, losses=losses)
